@@ -157,9 +157,9 @@ section h2::after {
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    padding: 2rem 1rem;
+    padding: 2rem 1.5rem;
     background: var(--card-bg);
-    border: 1px solid var(--border-color);
+    border: 2px solid var(--border-color);
     border-radius: 1rem;
     transition: all 0.3s ease;
     cursor: default;
@@ -167,10 +167,53 @@ section h2::after {
     overflow: hidden;
 }
 
+.tech-item::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, var(--accent-primary), var(--accent-secondary));
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.tech-item:hover::before {
+    opacity: 1;
+}
+
 .tech-item:hover {
     transform: translateY(-5px);
     box-shadow: var(--shadow-lg);
     border-color: var(--accent-primary);
+}
+
+/* Brand colors for each tech */
+.tech-item[data-tech="airflow"]::before {
+    background: linear-gradient(90deg, #017cee, #00c7d4);
+}
+
+.tech-item[data-tech="kubernetes"]::before {
+    background: #326CE5;
+}
+
+.tech-item[data-tech="aws"]::before {
+    background: linear-gradient(90deg, #FF9900, #232F3E);
+}
+
+.tech-item[data-tech="snowflake"]::before {
+    background: linear-gradient(90deg, #29B5E8, #1E88E5);
+}
+
+.tech-item[data-tech="kafka"]::before {
+    background: #231F20;
+}
+
+@media (prefers-color-scheme: dark) {
+    .tech-item[data-tech="kafka"]::before {
+        background: linear-gradient(90deg, #ffffff, #cccccc);
+    }
 }
 
 .tech-item svg {
@@ -235,10 +278,11 @@ section h2::after {
 }
 
 .tech-item span {
-    font-size: 0.95rem;
-    font-weight: 500;
+    font-size: 1rem;
+    font-weight: 600;
     color: var(--text-primary);
     text-align: center;
+    letter-spacing: 0.025em;
 }
 
 /* ===== Contact Section ===== */
