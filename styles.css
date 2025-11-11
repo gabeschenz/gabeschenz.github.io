@@ -163,6 +163,8 @@ section h2::after {
     border-radius: 1rem;
     transition: all 0.3s ease;
     cursor: default;
+    position: relative;
+    overflow: hidden;
 }
 
 .tech-item:hover {
@@ -172,16 +174,64 @@ section h2::after {
 }
 
 .tech-item svg {
-    width: 48px;
-    height: 48px;
+    width: 64px;
+    height: 64px;
     margin-bottom: 1rem;
-    fill: var(--accent-primary);
     transition: all 0.3s ease;
 }
 
 .tech-item:hover svg {
-    fill: var(--accent-secondary);
     transform: scale(1.1);
+}
+
+/* Kafka logo - change color based on theme */
+.kafka-logo path {
+    fill: #231f20;
+}
+
+@media (prefers-color-scheme: dark) {
+    .kafka-logo path {
+        fill: #e5e5e5;
+    }
+}
+
+/* Brand colors for top border accent */
+.tech-item[data-tech="python"]::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, #366994, #ffc331);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.tech-item[data-tech="python"]:hover::before {
+    opacity: 1;
+}
+
+.tech-item[data-tech="kafka"]::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: #231f20;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.tech-item[data-tech="kafka"]:hover::before {
+    opacity: 1;
+}
+
+@media (prefers-color-scheme: dark) {
+    .tech-item[data-tech="kafka"]::before {
+        background: #e5e5e5;
+    }
 }
 
 .tech-item span {
